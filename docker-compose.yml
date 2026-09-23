@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: sbos
+      POSTGRES_PASSWORD: sbos
+      POSTGRES_DB: sbos
+    ports:
+      - "5432:5432"
+    volumes:
+      - sbos_pg:/var/lib/postgresql/data
+      - ./backend/scripts/init-test-db.sql:/docker-entrypoint-initdb.d/init-test-db.sql
+
+volumes:
+  sbos_pg:
